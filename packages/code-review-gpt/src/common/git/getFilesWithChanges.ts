@@ -11,6 +11,8 @@ export const getFilesWithChanges = async (
 ): Promise<ReviewFile[]> => {
   try {
     const fileNames = await getChangedFilesNames(isCi);
+    logger.debug(`fileNames: ${JSON.stringify(fileNames)}`);
+
 
     if (fileNames.length === 0) {
       logger.warn(
