@@ -1,9 +1,5 @@
 name: Publish package to GitHub Packages
 
-defaults:
-  run:
-    shell: bash
-    working-directory: packages/code-review-gpt
 
 on:
   push:
@@ -18,6 +14,11 @@ permissions:
 jobs:
   publish-package:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/code-review-gpt
+
     steps:
       - uses: actions/checkout@v4
       # Setup .npmrc file to publish to GitHub Packages
@@ -27,13 +28,10 @@ jobs:
           node-version: '18'
           registry-url: 'https://npm.pkg.github.com'
       - name: 💫 Install dependencies
-        working-directory: packages/code-review-gpt
         run: npm ci
       - name: 🏡 Build
-        working-directory: packages/code-review-gpt
         run: npm run build
       - name: 🚀 Publish code-review-gpt
-        working-directory: packages/code-review-gpt
         run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
