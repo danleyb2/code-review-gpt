@@ -32,6 +32,8 @@ jobs:
       - name: 🏡 Build
         run: npm run build
       - name: 🚀 Publish code-review-gpt
-        run: npm publish --access=public
+        run: |
+          cp ./../../.npmrc .npmrc
+          npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
