@@ -30,10 +30,13 @@ jobs:
           # scope: '@octocat'
 
       - name: 💫 Install dependencies
+        working-directory: packages/code-review-gpt
         run: npm ci
       - name: 🏡 Build
+        working-directory: packages/code-review-gpt
         run: npm run build
       - name: 🚀 Publish code-review-gpt
+        working-directory: packages/code-review-gpt
         run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
