@@ -10,6 +10,11 @@ permissions:
   packages: write
   pull-requests: write
 
+defaults:
+  run:
+    shell: bash
+    working-directory: packages/code-review-gpt
+
 jobs:
   publish-package:
     runs-on: ubuntu-latest
@@ -21,9 +26,7 @@ jobs:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
       - name: 💫 Install dependencies
-        run: |
-          cd packages/code-review-gpt
-          npm ci
+        run: npm ci
       - name: 🏡 Build
         run: npm run build
       - name: 🚀 Publish code-review-gpt
