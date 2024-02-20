@@ -11,13 +11,14 @@ permissions:
   packages: write
   pull-requests: write
 
+defaults:
+  run:
+    shell: bash
+    working-directory: ./packages/code-review-gpt
+
 jobs:
   publish-package:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./packages/code-review-gpt
 
     steps:
       - uses: actions/checkout@v4
